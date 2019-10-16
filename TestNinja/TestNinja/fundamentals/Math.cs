@@ -8,6 +8,7 @@ namespace TestNinja.Fundamentals
         {
             return a + b;
         }
+
         public int Max(int a, int b)
         {
             return (a > b) ? a : b;
