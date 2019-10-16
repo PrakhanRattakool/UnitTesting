@@ -1,6 +1,5 @@
-﻿using System
-using Microsoft.VisalStudio.TestTools.UnitTesting;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using TestNinja.Fundamentals;
 
 namespace TestNinja.UnitTests
 {
@@ -17,7 +16,27 @@ namespace TestNinja.UnitTests
             var result = reservation.CanBeCancelledBy(new User { IsAdmin = true });
 
             // Assert
-            Assert.That(result, Is.True);
+            Assert.IsTrue(result);
         }
+        [TestMethod]
+        public void CanBeCancelledBy_SameUserCancelling_ReturnTrue()
+        {
+            var user = new User();
+            var reservation = new Reservation { MadeBy = user };
+
+            var result = reservation.CanBeCancelledBy(user);
+
+            Assert.IsTrue(result);
+        }
+        [TestMethod]
+        public void CanBeCancelledBy_AnotherUserCancelling_ReturnFalse()
+        {
+            var reservation = new Reservation { MadeBy = new User() };
+
+            var result = reservation.CanBeCancelledBy(new User());
+
+            Assert.IsFalse(result);
+        }
+
     }
 }
