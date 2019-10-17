@@ -10,9 +10,9 @@ namespace TestNinja.Fundamentals
         public event EventHandler<Guid> ErrorLogged;
 
         public void Log(string error)
-        {
+        {         
             if (String.IsNullOrWhiteSpace(error))
-                throw new ArgumentNullException();
+               throw new ArgumentNullException();
 
             LastError = error;
 
