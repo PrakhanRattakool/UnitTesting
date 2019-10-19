@@ -1,5 +1,7 @@
 ﻿using NUnit.Framework;
 using TestNinja.Mocking;
+using Moq;
+using System.Collections.Generic;
 
 namespace TestNinja.UnitTests.Mocking
 {
@@ -10,7 +12,7 @@ namespace TestNinja.UnitTests.Mocking
         private Mock<IFileReader> _fileReader;
         private Mock<IVideoRepository> _repository;
 
-        [Setup]
+        [SetUp]
         public void SetUp()
         {
             _fileReader = new Mock<IFileReader>();
@@ -21,7 +23,7 @@ namespace TestNinja.UnitTests.Mocking
         [Test]
         public void ReadVideoTitle_EmptyFile_ReturnError()
         {
-            _fileReader.SetUp(from => fr.Read("video.txt")).Returns("");
+            _fileReader.Setup(fr => fr.Read("video.txt")).Returns("");
 
             var result = _videoService.ReadVideoTitle();
 
